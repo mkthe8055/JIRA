@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Invoke API') {
+            steps {
+                script {
+                    // Execute the curl command directly
+                    sh '''
+                    curl --location 'https://api.staging.integrator.io/v1/imports/6759c724fb3de0fde8124cee/invoke' \
+                        --header 'Content-Type: application/json' \
+                        --header 'Authorization: Bearer d557f2e6643f4ed483b8a928e91e2171' \
+                        --header 'Cookie: integratorio.sesscookie.staging=s%3A4M-4q1Yrc7qe2r7_Vz6v7p2OFP9ulhOk.CLlNuodA23FzdHlgbk3iUFEsbC56p7YlqBt8R7%2FYFgY' \
+                        --data '{
+                          "Report URL": "https://reporting-portal.qa.staging.integrator.io/RESTAPI/staging/Oct_07_2024_18_55_rest_api_Csrf_Related_TCs2",
+                          "Suite Name": "Csrf_Related_TCs2",
+                          "ENV": "staging",
+                          "Owner": "Gautham",
+                          "Duration": "1:03:56",
+                          "Total": "214",
+                          "Pass": "202",
+                          "Fail": "12",
+                          "Flaky": "0",
+                          "Pending": "0"
+                        }'
+                    '''
+                }
+            }
+        }
+    }
+}
